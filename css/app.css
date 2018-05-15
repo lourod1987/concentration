@@ -1,0 +1,64 @@
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+
+.rating {
+  display: inline-flex;
+  list-style-type: none;
+  padding: 10px;
+}
+
+.rating li {
+  padding-left: 2px;
+}
+
+.moves {
+  padding: 10px;
+}
+
+.reset {
+  padding: 10px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 75px;
+}
+
+.deck {
+  list-style-type: none;
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+  grid-gap: 15px;
+}
+
+
+.card {
+  min-height: 100px;
+  padding: 2rem;
+  border: 1px solid black;
+  border-radius: 20px;
+  text-align: center;
+}
