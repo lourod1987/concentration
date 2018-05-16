@@ -1,6 +1,5 @@
 const $cards = $('.deck li');
 const $back = $('.deck li i');
-
 let moves = 0;
 //$back.hide();
 
@@ -37,6 +36,7 @@ $(document).ready( () => {
 //      console.log($selection.length);
 //    }, 100);
     
+    
     //selection check
      setTimeout(function check() {
         if ($selection.length > 1) {
@@ -56,11 +56,23 @@ $(document).ready( () => {
           }
         }
      }, 600);
+    
+    
   });
   
-//   function check() {}
-  
+  setInterval(function win() {
+    console.log($('li.card.correct').length);
+    if ($('li.card.correct').length >= 2) {
+      const $win = $('.correct');
+      
+      if ($win.length === 16) {
+        alert("You win!");
+        reset();
+      }
+    }
+  }, 500);
 });
+
 
 let shuffleDeck = [
   '<span>Phoenix</span>',
@@ -82,7 +94,8 @@ let shuffleDeck = [
 ];
 
 function shuffle() {
-  let currentI = shuffleDeck.length;
+  let copy = shuffleDeck;
+  let currentI = copy.length;
   let num = 0;
   
   while (currentI > 0) {
@@ -90,12 +103,23 @@ function shuffle() {
     
 //    console.log('random num: ' + rand); //current random interger
 //    console.log(`rand card: ${shuffleDeck[rand]}`); //selected span by rand
-    $($cards[num]).append(shuffleDeck[rand]);
+    $($cards[num]).append(copy[rand]);
 //    console.log($cards[num]); //selected card slot
-    shuffleDeck.splice(rand, 1);
+    copy.splice(rand, 1);
 //    console.log(`current deck: 
 //    ${shuffleDeck}`); //what the shuffleDeck array looks like after splice
     currentI--;
     num++;
   }
+}
+
+function reset() {
+  let moves = 0;
+  $('.count').remove();
+  $('.moves').prepend('<span class="count">' + - + '</span>');
+  $('li.card').removeClass("correct");
+  $('.deck li.card').find("span").remove();
+  shuffle();
+  $front.addClass("default");
+  $front.css("color", "white");
 }
