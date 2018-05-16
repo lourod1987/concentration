@@ -1,6 +1,6 @@
 const $cards = $('.deck li');
 const $back = $('.deck li i');
-let click = 0;
+
 let moves = 0;
 //$back.hide();
 
@@ -9,28 +9,56 @@ $(document).ready( () => {
   
   const $front = $('.deck li span');
   
-  $cards.css("background-color", "red");
+  $front.addClass("default");
   $front.css("color", "white");
-  $front.hide();
+//  $front.hide();
   
   
   //card flip
-$('.deck li').click( (evt) => {
-  let cur = evt.currentTarget;
-  $(cur).find("i").toggle();
-  $(cur).find("span").toggle();
-  click ++;
-  moves++;
+  $('.deck li').click( (evt) => {
+    let cur = evt.currentTarget;
+    $(cur).find("i").toggle();
+    $(cur).find("span").toggle();
+    $(cur).addClass("selected");
+    moves++;
+    
+    const $selection = $('.selected');
+    $('.count').remove();
+    $('.moves').prepend('<span class="count">' + moves + '</span>');
+    
+    
+//    setTimeout(function lock() {
+//      if ($selection.length === 2) {
+//        $('.card').addClass("lock");
+//      } 
+//      if ($selection.length < 2) {
+//        $('.card').removeClass("lock");
+//      }
+//      console.log($selection.length);
+//    }, 100);
+    
+    //selection check
+     setTimeout(function check() {
+        if ($selection.length > 1) {
+          let select1 = $selection[0].textContent;
+          let select2 = $selection[1].textContent;
+
+          if (select1 === select2) {
+            $('.selected').addClass('correct');
+            $('.selected').addClass('correct');
+            $('li.card.correct span').removeClass('default');
+            $('li.card').removeClass('selected');
+          } else {
+            $('.deck li').removeClass("selected");
+            $('.default').hide();
+            $('.default').prev().show();
+            $('li.card').removeClass('selected');
+          }
+        }
+     }, 600);
+  });
   
-  $('.count').remove();
-  $('.moves').prepend('<span class="count">' + moves + '</span>');
-  
-  if (click > 2) {
-    $front.hide();
-    $back.show();
-    click = 0;
-  }
-});
+//   function check() {}
   
 });
 

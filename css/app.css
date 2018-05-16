@@ -63,4 +63,29 @@ main {
   border: 1px solid black;
   border-radius: 20px;
   text-align: center;
+  background-color: aqua;
+}
+
+.deck li {
+  cursor:pointer;
+}
+
+.selected {
+  background-color: green;
+/*  pointer-events: none;*/
+  cursor: default;
+}
+
+.correct {
+  background-color: lawngreen;
+/*  pointer-events: none;*/
+  cursor: default;
+}
+
+.default {
+	display: none;
+}
+
+.lock {
+  pointer-events: none;
 }
