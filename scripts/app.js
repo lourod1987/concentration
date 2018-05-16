@@ -20,6 +20,10 @@ $('.deck li').click( (evt) => {
   $(cur).find("i").toggle();
   $(cur).find("span").toggle();
   click ++;
+  moves++;
+  
+  $('.count').remove();
+  $('.moves').prepend('<span class="count">' + moves + '</span>');
   
   if (click > 2) {
     $front.hide();
@@ -27,6 +31,7 @@ $('.deck li').click( (evt) => {
     click = 0;
   }
 });
+  
 });
 
 let shuffleDeck = [
@@ -53,16 +58,15 @@ function shuffle() {
   let num = 0;
   
   while (currentI > 0) {
-    let current = shuffleDeck[currentI];
     let rand = Math.floor(Math.random() * currentI);
     
-    console.log('random num: ' + rand);
-    console.log(`rand card: ${shuffleDeck[rand]}`);
+//    console.log('random num: ' + rand); //current random interger
+//    console.log(`rand card: ${shuffleDeck[rand]}`); //selected span by rand
     $($cards[num]).append(shuffleDeck[rand]);
-    console.log($cards[num]);
+//    console.log($cards[num]); //selected card slot
     shuffleDeck.splice(rand, 1);
 //    console.log(`current deck: 
-//    ${shuffleDeck}`);
+//    ${shuffleDeck}`); //what the shuffleDeck array looks like after splice
     currentI--;
     num++;
   }
