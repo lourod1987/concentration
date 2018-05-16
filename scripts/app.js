@@ -61,7 +61,6 @@ $(document).ready( () => {
   });
   
   setInterval(function win() {
-    console.log($('li.card.correct').length);
     if ($('li.card.correct').length >= 2) {
       const $win = $('.correct');
       
@@ -94,7 +93,7 @@ let shuffleDeck = [
 ];
 
 function shuffle() {
-  let copy = shuffleDeck;
+  let copy = shuffleDeck.slice(0);
   let currentI = copy.length;
   let num = 0;
   
@@ -114,12 +113,13 @@ function shuffle() {
 }
 
 function reset() {
-  let moves = 0;
+  moves = 0;
   $('.count').remove();
-  $('.moves').prepend('<span class="count">' + - + '</span>');
+  $('.moves').prepend('<span class="count"> - </span>');
   $('li.card').removeClass("correct");
   $('.deck li.card').find("span").remove();
   shuffle();
-  $front.addClass("default");
-  $front.css("color", "white");
+  $('.deck li span').addClass("default");
+  $('.deck li span').css("color", "white");
+  $back.show();
 }
