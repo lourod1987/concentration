@@ -23,10 +23,10 @@ $(document).ready( () => {
   
   const score = [
     '<li>*</li>',
-      '<li id="second">*</li>',
-      '<li id="third">*</li>',
-      '<li id="fourth">*</li>',
-      '<li id="fifth">*</li>'
+    '<li id="second">*</li>',
+    '<li id="third">*</li>',
+    '<li id="fourth">*</li>',
+    '<li id="fifth">*</li>'
   ];
 //$back.hide();
   
