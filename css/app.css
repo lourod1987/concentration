@@ -20,7 +20,7 @@ html {
 .info {
   display: flex;
   justify-content: center;
-  margin-top: 35px;
+  margin-top: 25px;
   margin-bottom: 20px;
 }
 
@@ -69,25 +69,58 @@ main {
   border: 1px solid black;
   border-radius: 20px;
   text-align: center;
-  background-color: #008BF8;
-  transform: rotateY(180);
+  background-color: #3FFFF2;
+}
+
+@keyframes matching {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes incorrect {
+  0% {right: 0px;}
+  25% {right: 10px;}
+  50% {left: 0px;}
+  75% {left: 10px;}
+  100% {right: 0px;}
 }
 
 .deck li {
   cursor:pointer;
 }
 
+.incorrect {
+  background-color: red;
+  position: relative;
+  animation-name: incorrect;
+  animation-duration: 0.4s;
+  animation-timing-function: linear;
+  -webkit-animation-name: incorrect;
+  -webkit-animation-duration: 0.4s; 
+  -webkit-animation-timing-function: linear;
+}
+
 .selected {
   background-color: #23CE6B;
   pointer-events: none;
   cursor: default;
-  transform: rotateY(180);
 }
 
 .correct {
-  background-color: #89FC00;
+  background-color: #48E500;
   pointer-events: none;
   cursor: default;
+  position: relative;
+  animation-name: matching;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-name: matching;
+  -webkit-animation-duration: 0.6s; 
+  -webkit-animation-timing-function: ease-in-out;
 }
 
 .default {

@@ -112,6 +112,7 @@ function reset() {
             $('li.card.correct span').removeClass('default');
             $('li.card').removeClass('selected');
           } else {
+            $('.selected').addClass("incorrect");
             $('.deck li').removeClass("selected");
             $('.default').hide();
             $('.default').prev().show();
@@ -124,6 +125,7 @@ function reset() {
   });
   
   setInterval(function win() {
+    $('li.card').removeClass("incorrect");
     if ($('li.card.correct').length >= 2) {
       const $win = $('.correct');
       
