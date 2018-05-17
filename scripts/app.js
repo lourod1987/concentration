@@ -22,11 +22,11 @@ $(document).ready( () => {
   ];
   
   const score = [
-    '<li>*</li>',
-    '<li id="second">*</li>',
-    '<li id="third">*</li>',
-    '<li id="fourth">*</li>',
-    '<li id="fifth">*</li>'
+    '<li><img src="imgs/full-star_noun_cc.svg"></li>',
+    '<li id="second"><img src="imgs/full-star_noun_cc.svg"></li>',
+    '<li id="third"><img src="imgs/full-star_noun_cc.svg"></li>',
+    '<li id="fourth"><img src="imgs/full-star_noun_cc.svg"></li>',
+    '<li id="fifth"><img src="imgs/full-star_noun_cc.svg"></li>'
   ];
 //$back.hide();
   
@@ -53,6 +53,7 @@ $(document).ready( () => {
   
 function reset() {
   moves = 0;
+  $('.info div').addClass("reset-animate ");
   $('.count').remove();
   $('.moves').prepend('<span class="count"> - </span>');
   $('li.card').removeClass("correct");
@@ -64,6 +65,9 @@ function reset() {
   $back.show();
   $('.rating li').remove();
   $('.rating').append(score);
+  setTimeout(function resetAnim() {
+    $('.info div').removeClass("reset-animate ");
+  }, 625);
 }
   
   shuffle();
