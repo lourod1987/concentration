@@ -3,22 +3,22 @@ $(document).ready( () => {
   const $back = $('.deck li i');
   let moves = 0;
   const shuffleDeck = [
-    '<span>Phoenix</span>',
-    '<span>Phoenix</span>',
-    '<span>Dragon</span>',
-    '<span>Dragon</span>',
-    '<span>Pegasus</span>',
-    '<span>Pegasus</span>',
-    '<span>Golem</span>',
-    '<span>Golem</span>',
-    '<span>Siren</span>',
-    '<span>Siren</span>',
-    '<span>Hydra</span>',
-    '<span>Hydra</span>',
-    '<span>Elf</span>',
-    '<span>Elf</span>',
-    '<span>Dwarf</span>',
-    '<span>Dwarf</span>'
+    '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
+    '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
+    '<span><img src="../imgs/dragon_noun_cc.svg">Dragon</span>',
+    '<span><img src="../imgs/dragon_noun_cc.svg">Dragon</span>',
+    '<span><img src="../imgs/pegasus_noun_cc.svg">Pegasus</span>',
+    '<span><img src="../imgs/pegasus_noun_cc.svg">Pegasus</span>',
+    '<span><img src="../imgs/golem_noun_cc.svg">Golem</span>',
+    '<span><img src="../imgs/golem_noun_cc.svg">Golem</span>',
+    '<span><img src="../imgs/siren_noun_cc.svg">Siren</span>',
+    '<span><img src="../imgs/siren_noun_cc.svg">Siren</span>',
+    '<span><img src="../imgs/hydra_noun_cc.svg">Hydra</span>',
+    '<span><img src="../imgs/hydra_noun_cc.svg">Hydra</span>',
+    '<span><img src="../imgs/elf_noun_cc.svg">Elf</span>',
+    '<span><img src="../imgs/elf_noun_cc.svg">Elf</span>',
+    '<span><img src="../imgs/dwarf_noun_cc.svg">Dwarf</span>',
+    '<span><img src="../imgs/dwarf_noun_cc.svg">Dwarf</span>'
   ];
   
   const score = [

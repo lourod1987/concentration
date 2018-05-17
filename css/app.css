@@ -54,18 +54,22 @@ main {
   display: grid;
   grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
   grid-gap: 15px;
+  padding: 2em;
+  background: linear-gradient(#001756, #00E1FF);
+  border-radius: 20px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, .5);
 }
 
-
 .card {
-  min-height: 100px;
-  min-width: 100px;
-  max-width: 100px;
+  min-height: 170px;
+  max-height: 170px;
+  min-width: 150px;
+  max-width: 150px;
   padding: 2rem;
   border: 1px solid black;
   border-radius: 20px;
   text-align: center;
-  background-color: aqua;
+  background-color: #008BF8;
 }
 
 .deck li {
@@ -73,13 +77,14 @@ main {
 }
 
 .selected {
-  background-color: green;
+  background-color: #23CE6B;
   pointer-events: none;
   cursor: default;
+  transform: rotateY(0);
 }
 
 .correct {
-  background-color: lawngreen;
+  background-color: #89FC00;
   pointer-events: none;
   cursor: default;
 }
