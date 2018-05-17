@@ -97,7 +97,6 @@ function reset() {
 //      console.log($selection.length);
 //    }, 100);
     
-    
     //selection check
      setTimeout(function check() {
         if ($selection.length > 1) {
@@ -117,6 +116,9 @@ function reset() {
             $('.default').hide();
             $('.default').prev().show();
             $('li.card').removeClass('selected');
+            setTimeout(function wrongAnim() {
+              $('li.card').removeClass("incorrect")
+            }, 425);
           }
         }
      }, 600);
@@ -125,7 +127,6 @@ function reset() {
   });
   
   setInterval(function win() {
-    $('li.card').removeClass("incorrect");
     if ($('li.card.correct').length >= 2) {
       const $win = $('.correct');
       
