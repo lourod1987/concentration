@@ -70,6 +70,7 @@ main {
   border-radius: 20px;
   text-align: center;
   background-color: #008BF8;
+  transform: rotateY(180);
 }
 
 .deck li {
@@ -80,7 +81,7 @@ main {
   background-color: #23CE6B;
   pointer-events: none;
   cursor: default;
-  transform: rotateY(0);
+  transform: rotateY(180);
 }
 
 .correct {
