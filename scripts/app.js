@@ -84,7 +84,6 @@ function reset() {
     $(cur).find("i").toggle();
     $(cur).find("span").toggle();
     $(cur).addClass("selected");
-    moves++;
     
     const $selection = $('.selected');
     $('.count').remove();
@@ -114,18 +113,20 @@ function reset() {
             $(correct2).addClass('correct');
             $('li.card.correct span').removeClass('default');
             $('li.card').removeClass('selected');
+            moves++;
           } else {
             $('.selected').addClass("incorrect");
             $('.deck li').removeClass("selected");
             $('.default').hide();
             $('.default').prev().show();
             $('li.card').removeClass('selected');
+            moves++;
             setTimeout(function wrongAnim() {
-              $('li.card').removeClass("incorrect")
+            $('li.card').removeClass("incorrect")
             }, 425);
           }
         }
-     }, 600);
+     }, 500);
     
     
   });
