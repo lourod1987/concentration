@@ -28,7 +28,6 @@ $(document).ready( () => {
     '<li id="fourth"><img src="imgs/full-star_noun_cc.svg"></li>',
     '<li id="fifth"><img src="imgs/full-star_noun_cc.svg"></li>'
   ];
-//$back.hide();
   
   function shuffle() {
   let copy = shuffleDeck.slice(0); //make copy of shuffleDeck array
@@ -75,7 +74,6 @@ function reset() {
   const $front = $('.deck li span');
   $front.addClass("default");
   $front.css("color", "white");
-//  $front.hide();
   
   
   //card flip
@@ -86,9 +84,6 @@ function reset() {
     $(cur).addClass("selected");
     
     const $selection = $('.selected');
-    $('.count').remove();
-    $('.moves').prepend('<span class="count">' + moves + '</span>');
-    
     
 //    setTimeout(function lock() {
 //      if ($selection.length === 2) {
@@ -114,6 +109,8 @@ function reset() {
             $('li.card.correct span').removeClass('default');
             $('li.card').removeClass('selected');
             moves++;
+            $('.count').remove();
+            $('.moves').prepend('<span class="count">' + moves + '</span>');
           } else {
             $('.selected').addClass("incorrect");
             $('.deck li').removeClass("selected");
@@ -121,14 +118,14 @@ function reset() {
             $('.default').prev().show();
             $('li.card').removeClass('selected');
             moves++;
+            $('.count').remove();
+            $('.moves').prepend('<span class="count">' + moves + '</span>');
             setTimeout(function wrongAnim() {
             $('li.card').removeClass("incorrect")
             }, 425);
           }
         }
      }, 500);
-    
-    
   });
   
   setInterval(function win() {
