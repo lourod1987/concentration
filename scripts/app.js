@@ -13,20 +13,20 @@ $(document).ready( () => {
     '<span><img src="../imgs/golem_noun_cc.svg">Golem</span>',
     '<span><img src="../imgs/siren_noun_cc.svg">Siren</span>',
     '<span><img src="../imgs/siren_noun_cc.svg">Siren</span>',
-    '<span><img src="../imgs/hydra_noun_cc.svg">Hydra</span>',
-    '<span><img src="../imgs/hydra_noun_cc.svg">Hydra</span>',
-    '<span><img src="../imgs/elf_noun_cc.svg">Elf</span>',
-    '<span><img src="../imgs/elf_noun_cc.svg">Elf</span>',
+    '<span><img src="../imgs/hydra.svg">Hydra</span>',
+    '<span><img src="../imgs/hydra.svg">Hydra</span>',
+    '<span><img src="../imgs/elf.svg">Elf</span>',
+    '<span><img src="../imgs/elf.svg">Elf</span>',
     '<span><img src="../imgs/dwarf_noun_cc.svg">Dwarf</span>',
     '<span><img src="../imgs/dwarf_noun_cc.svg">Dwarf</span>'
   ];
   
   const score = [
-    '<li><img src="imgs/full-star_noun_cc.svg"></li>',
-    '<li id="second"><img src="imgs/full-star_noun_cc.svg"></li>',
-    '<li id="third"><img src="imgs/full-star_noun_cc.svg"></li>',
-    '<li id="fourth"><img src="imgs/full-star_noun_cc.svg"></li>',
-    '<li id="fifth"><img src="imgs/full-star_noun_cc.svg"></li>'
+    '<li><img src="../imgs/primary-star.svg"></li>',
+    '<li id="second"><img src="../imgs/primary-star.svg"></li>',
+    '<li id="third"><img src="../imgs/primary-star.svg"></li>',
+    '<li id="fourth"><img src="../imgs/primary-star.svg"></li>',
+    '<li id="fifth"><img src="../imgs/primary-star.svg"></li>'
   ];
   
   function shuffle() {
@@ -60,7 +60,7 @@ function reset() {
   $('.deck li.card').find("span").remove();
   shuffle();
   $('.deck li span').addClass("default");
-  $('.deck li span').css("color", "white");
+//  $('.deck li span').css("color", "white");
   $back.show();
   $('.rating li').remove();
   $('.rating').append(score);
@@ -73,7 +73,7 @@ function reset() {
   
   const $front = $('.deck li span');
   $front.addClass("default");
-  $front.css("color", "white");
+//  $front.css("color", "white");
   
   
   //card flip
@@ -144,6 +144,7 @@ function reset() {
   setInterval(function scoreCheck() {
     if (moves > 24) {
       $('#fifth').remove();
+//      $('.rating').append('<li><img src="../imgs/empty-star.svg"></li>');
     }
     
     if (moves > 32) {
