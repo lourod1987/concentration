@@ -17,8 +17,8 @@ $(document).ready( () => {
     '<span><img src="../imgs/hydra.svg">Hydra</span>',
     '<span><img src="../imgs/elf.svg">Elf</span>',
     '<span><img src="../imgs/elf.svg">Elf</span>',
-    '<span><img src="../imgs/dwarf_noun_cc.svg">Dwarf</span>',
-    '<span><img src="../imgs/dwarf_noun_cc.svg">Dwarf</span>'
+    '<span><img src="../imgs/dwarf.svg">Dwarf</span>',
+    '<span><img src="../imgs/dwarf.svg">Dwarf</span>'
   ];
   
   const score = [
