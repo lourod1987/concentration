@@ -1,7 +1,10 @@
 $(document).ready( () => {
   const $cards = $('.deck li');
   const $back = $('.deck li i');
+  let $timeCount = $('.time-count').text();
   let moves = 0;
+  let timer = [0, 0]
+  let timeRunning = false;
   const shuffleDeck = [
     '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
     '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
@@ -50,36 +53,40 @@ $(document).ready( () => {
     num++;
   }
 }
+  
+  shuffle();
+  
+  function leadingZero(time) {
+    if (time <= 9) {
+      time = "0" + time;
+    }
+    return time;
+  }
+  
+      
+function runTimer() {
+//      if (!timeRunning) {
+        timeRunning = true;
+        timer[1]++;
 
-  
-function reset() {
-  moves = 0;
-  $('.info div').addClass("reset-animate ");
-  $('.count').remove();
-  $('.moves').prepend('<span class="count"> - </span>');
-  $('li.card').removeClass("correct");
-  $('li.card').removeClass('selected');
-  $('.deck li.card').find("span").remove();
-  shuffle();
-  $('.deck li span').addClass("default");
-//  $('.deck li span').css("color", "white");
-  $back.show();
-  $('.rating li').remove();
-  $('.rating').append(score);
-  setTimeout(function resetAnim() {
-    $('.info div').removeClass("reset-animate ");
-  }, 625);
-}
-  
-  shuffle();
+        if (timer[1] > 59) {
+          timer[1] = 0;
+          timer[0]++;
+        }
+
+        $('.timer span').remove();
+        $('.timer').append('<span>'+leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + '<span>');
+//      }
+  }
   
   const $front = $('.deck li span');
   $front.addClass("default");
-//  $front.css("color", "white");
   
   
   //card flip
   $('.deck li').click( (evt) => {
+    setInterval(runTimer, 1000);
+    
     let cur = evt.currentTarget;
     $(cur).find("i").toggle();
     $(cur).find("span").toggle();
@@ -131,6 +138,30 @@ function reset() {
      }, 500);
   });
   
+function reset() {
+  moves = 0;
+  $('.info div').addClass("reset-animate ");
+  $('.count').remove();
+  $('.moves').prepend('<span class="count"> - </span>');
+  $('li.card').removeClass("correct");
+  $('li.card').removeClass('selected');
+  $('.deck li.card').find("span").remove();
+  shuffle();
+  $('.deck li span').addClass("default");
+//  $('.deck li span').css("color", "white");
+  $back.show();
+  $('.rating li').remove();
+  $('.rating').append(score);
+  clearInterval(timerFunc);
+  timeRunning = false;
+  timer = [0, 0];
+  $('.timer span').remove();
+ $('.timer').append('<span>--:--</span>');
+  setTimeout(function resetAnim() {
+    $('.info div').removeClass("reset-animate ");
+  }, 625);
+}
+  
 function win() {
   if ($('li.card.correct').length >= 2) {
       const $win = $('.correct');
@@ -168,7 +199,7 @@ function win() {
     }
   }, 100);
   
-  $('.reset').click( (evt) => {
+  $('.reset').click( () => {
     reset();
   });
 });
