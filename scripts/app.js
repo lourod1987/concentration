@@ -5,6 +5,7 @@ $(document).ready( () => {
   let moves = 0;
   let timer = [0, 0]
   let timeRunning = false;
+  let timerFunc;
   const shuffleDeck = [
     '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
     '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
@@ -63,10 +64,16 @@ $(document).ready( () => {
     return time;
   }
   
-      
-function runTimer() {
-//      if (!timeRunning) {
-        timeRunning = true;
+  const $front = $('.deck li span');
+  $front.addClass("default");
+  
+  
+  //card flip
+  $('.deck li').click( (evt) => {
+    
+    if (!timeRunning) {
+      timeRunning = true;
+      timerFunc = setInterval(function runTimer() {
         timer[1]++;
 
         if (timer[1] > 59) {
@@ -76,16 +83,8 @@ function runTimer() {
 
         $('.timer span').remove();
         $('.timer').append('<span>'+leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + '<span>');
-//      }
-  }
-  
-  const $front = $('.deck li span');
-  $front.addClass("default");
-  
-  
-  //card flip
-  $('.deck li').click( (evt) => {
-    setInterval(runTimer, 1000);
+      }, 1000);
+    }
     
     let cur = evt.currentTarget;
     $(cur).find("i").toggle();
@@ -138,30 +137,32 @@ function runTimer() {
      }, 500);
   });
   
-function reset() {
-  moves = 0;
-  $('.info div').addClass("reset-animate ");
-  $('.count').remove();
-  $('.moves').prepend('<span class="count"> - </span>');
-  $('li.card').removeClass("correct");
-  $('li.card').removeClass('selected');
-  $('.deck li.card').find("span").remove();
-  shuffle();
-  $('.deck li span').addClass("default");
-//  $('.deck li span').css("color", "white");
-  $back.show();
-  $('.rating li').remove();
-  $('.rating').append(score);
-  clearInterval(timerFunc);
-  timeRunning = false;
-  timer = [0, 0];
-  $('.timer span').remove();
- $('.timer').append('<span>--:--</span>');
-  setTimeout(function resetAnim() {
-    $('.info div').removeClass("reset-animate ");
-  }, 625);
-}
-  
+  //reset game
+  function reset() {
+    moves = 0;
+    $('.info div').addClass("reset-animate ");
+    $('.count').remove();
+    $('.moves').prepend('<span class="count"> - </span>');
+    $('li.card').removeClass("correct");
+    $('li.card').removeClass('selected');
+    $('.deck li.card').find("span").remove();
+    shuffle();
+    $('.deck li span').addClass("default");
+    $back.show();
+    $('.rating li').remove();
+    $('.rating').append(score);
+    clearInterval(timerFunc);
+    timerFunc = null;
+    timer = [0, 0];
+    timeRunning = false;
+    $('.timer span').remove();
+   $('.timer').append('<span>--:--</span>');
+    setTimeout(function resetAnim() {
+      $('.info div').removeClass("reset-animate ");
+    }, 625);
+  }
+
+//Check to see if win condition is met
 function win() {
   if ($('li.card.correct').length >= 2) {
       const $win = $('.correct');
@@ -175,6 +176,7 @@ function win() {
   }
 };
   
+  //Check current move count to determine score
   setInterval(function scoreCheck() {
 //    console.log($('.rating li'));
     if ($('#fifth') == true) {
