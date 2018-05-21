@@ -49,6 +49,11 @@ html {
   align-self: center;
 }
 
+.timer {
+  align-self: center;
+  padding: 10px;
+}
+
 .reset {
   min-width: 45px;
   padding: 10px;

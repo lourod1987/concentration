@@ -9,8 +9,8 @@ $(document).ready( () => {
     '<span><img src="../imgs/dragon_noun_cc.svg">Dragon</span>',
     '<span><img src="../imgs/pegasus_noun_cc.svg">Pegasus</span>',
     '<span><img src="../imgs/pegasus_noun_cc.svg">Pegasus</span>',
-    '<span><img src="../imgs/golem_noun_cc.svg">Golem</span>',
-    '<span><img src="../imgs/golem_noun_cc.svg">Golem</span>',
+    '<span><img src="../imgs/golem.svg">Golem</span>',
+    '<span><img src="../imgs/golem.svg">Golem</span>',
     '<span><img src="../imgs/siren_noun_cc.svg">Siren</span>',
     '<span><img src="../imgs/siren_noun_cc.svg">Siren</span>',
     '<span><img src="../imgs/hydra.svg">Hydra</span>',
@@ -28,6 +28,8 @@ $(document).ready( () => {
     '<li id="fourth"><img src="../imgs/primary-star.svg"></li>',
     '<li id="fifth"><img src="../imgs/primary-star.svg"></li>'
   ];
+  
+  const emptyStar = ['<li><img src="../imgs/empty-star.svg"></li>'];
   
   function shuffle() {
   let copy = shuffleDeck.slice(0); //make copy of shuffleDeck array
@@ -111,6 +113,7 @@ function reset() {
             moves++;
             $('.count').remove();
             $('.moves').prepend('<span class="count">' + moves + '</span>');
+            setTimeout(win(), 650);
           } else {
             $('.selected').addClass("incorrect");
             $('.deck li').removeClass("selected");
@@ -121,30 +124,35 @@ function reset() {
             $('.count').remove();
             $('.moves').prepend('<span class="count">' + moves + '</span>');
             setTimeout(function wrongAnim() {
-            $('li.card').removeClass("incorrect")
+              $('li.card').removeClass("incorrect");
             }, 425);
           }
         }
      }, 500);
   });
   
-  setInterval(function win() {
-    if ($('li.card.correct').length >= 2) {
+function win() {
+  if ($('li.card.correct').length >= 2) {
       const $win = $('.correct');
-      
+  
       if ($win.length === 16) {
         let $rating = $('.rating');
         console.log($rating);
         alert("You win! Your rating is: " + $rating);
         reset();
       }
-    }
-  }, 500);
+  }
+};
   
   setInterval(function scoreCheck() {
-    if (moves > 24) {
-      $('#fifth').remove();
-//      $('.rating').append('<li><img src="../imgs/empty-star.svg"></li>');
+//    console.log($('.rating li'));
+    if ($('#fifth') == true) {
+      if (moves > 4) {
+        $('#fifth').remove();
+        let copy = emptyStar.slice(0);
+        $('.rating').append(copy);
+        copy.splice(0, 1);
+      }
     }
     
     if (moves > 32) {
