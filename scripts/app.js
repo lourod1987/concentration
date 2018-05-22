@@ -1,11 +1,12 @@
 $(document).ready( () => {
-  const $cards = $('.deck li');
+  const $cards = $(".deck li");
   const $back = $('.deck li i');
   let $timeCount = $('.time-count').text();
   let moves = 0;
   let timer = [0, 0]
   let timeRunning = false;
   let timerFunc;
+  let currentTime;
   const shuffleDeck = [
     '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
     '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
@@ -36,41 +37,40 @@ $(document).ready( () => {
   const emptyStar = ['<li><img src="../imgs/empty-star.svg"></li>'];
   
   function shuffle() {
-  let copy = shuffleDeck.slice(0); //make copy of shuffleDeck array
-  let currentI = copy.length;
-  let num = 0;
-  
-  while (currentI > 0) {
-    let rand = Math.floor(Math.random() * currentI);
+    let copy = shuffleDeck.slice(0); //make copy of shuffleDeck array
+    let currentI = copy.length;
+    let num = 0;
+    
+    while (currentI > 0) {
+      let rand = Math.floor(Math.random() * currentI);
     
 //    console.log('random num: ' + rand); //current random interger
 //    console.log(`rand card: ${shuffleDeck[rand]}`); //selected span by rand
-    $($cards[num]).append(copy[rand]);
+      $($cards[num]).append(copy[rand]);
 //    console.log($cards[num]); //selected card slot
-    copy.splice(rand, 1);
+      copy.splice(rand, 1);
 //    console.log(`current deck: 
 //    ${shuffleDeck}`); //what the shuffleDeck array looks like after splice
-    currentI--;
-    num++;
+      currentI--;
+      num++;
+    }
   }
-}
   
   shuffle();
   
   function leadingZero(time) {
     if (time <= 9) {
-      time = "0" + time;
+      time = `0${time}`;
     }
     return time;
   }
   
-  const $front = $('.deck li span');
+  const $front = $(".deck li span");
   $front.addClass("default");
   
   
-  //card flip
-  $('.deck li').click( (evt) => {
-    
+  //on card click
+  $($cards).click( (evt) => {
     if (!timeRunning) {
       timeRunning = true;
       timerFunc = setInterval(function runTimer() {
@@ -80,9 +80,10 @@ $(document).ready( () => {
           timer[1] = 0;
           timer[0]++;
         }
-
+        
+        currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]);
         $('.timer span').remove();
-        $('.timer').append('<span>'+leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + '<span>');
+        $('.timer').append('<span>' + currentTime + '<span>');
       }, 1000);
     }
     
@@ -91,7 +92,7 @@ $(document).ready( () => {
     $(cur).find("span").toggle();
     $(cur).addClass("selected");
     
-    const $selection = $('.selected');
+    const $selection = $(".selected");
     
 //    setTimeout(function lock() {
 //      if ($selection.length === 2) {
@@ -112,25 +113,25 @@ $(document).ready( () => {
           let correct2 = $selection[1]
 
           if (select1 === select2) {
-            $(correct1).addClass('correct');
-            $(correct2).addClass('correct');
-            $('li.card.correct span').removeClass('default');
-            $('li.card').removeClass('selected');
+            $(correct1).addClass("correct");
+            $(correct2).addClass("correct");
+            $("li.card.correct span").removeClass("default");
+            $("li.card").removeClass("selected");
             moves++;
-            $('.count').remove();
-            $('.moves').prepend('<span class="count">' + moves + '</span>');
+            $(".count").remove();
+            $(".moves").prepend('<span class="count">' + moves + '</span>');
             setTimeout(win(), 650);
           } else {
-            $('.selected').addClass("incorrect");
-            $('.deck li').removeClass("selected");
-            $('.default').hide();
-            $('.default').prev().show();
-            $('li.card').removeClass('selected');
+            $(".selected").addClass("incorrect");
+            $($cards).removeClass("selected");
+            $(".default").hide();
+            $(".default").prev().show();
+            $("li.card").removeClass("selected");
             moves++;
-            $('.count').remove();
-            $('.moves').prepend('<span class="count">' + moves + '</span>');
+            $(".count").remove();
+            $(".moves").prepend('<span class="count">' + moves + '</span>');
             setTimeout(function wrongAnim() {
-              $('li.card').removeClass("incorrect");
+              $("li.card").removeClass("incorrect");
             }, 425);
           }
         }
@@ -140,68 +141,79 @@ $(document).ready( () => {
   //reset game
   function reset() {
     moves = 0;
-    $('.info div').addClass("reset-animate ");
-    $('.count').remove();
-    $('.moves').prepend('<span class="count"> - </span>');
-    $('li.card').removeClass("correct");
-    $('li.card').removeClass('selected');
-    $('.deck li.card').find("span").remove();
+    $(".info div").addClass("reset-animate ");
+    $(".count").remove();
+    $(".moves").prepend('<span class="count"> - </span>');
+    $("li.card").removeClass("correct");
+    $("li.card").removeClass("selected");
+    $(".deck li.card").find("span").remove();
     shuffle();
-    $('.deck li span').addClass("default");
+    $(".deck li span").addClass("default");
     $back.show();
-    $('.rating li').remove();
-    $('.rating').append(score);
+    $(".rating li").remove();
+    $(".rating").append(score);
     clearInterval(timerFunc);
-    timerFunc = null;
+//    timerFunc = null;
     timer = [0, 0];
     timeRunning = false;
-    $('.timer span').remove();
-   $('.timer').append('<span>--:--</span>');
+    $(".timer span").remove();
+   $(".timer").append("<span>--:--</span>");
     setTimeout(function resetAnim() {
-      $('.info div').removeClass("reset-animate ");
+      $(".info div").removeClass("reset-animate ");
     }, 625);
   }
 
-//Check to see if win condition is met
-function win() {
-  if ($('li.card.correct').length >= 2) {
-      const $win = $('.correct');
-  
-      if ($win.length === 16) {
-        let $rating = $('.rating');
-        console.log($rating);
-        alert("You win! Your rating is: " + $rating);
-        reset();
+  //Check to see if win condition is met
+  function win() {
+    if ($("li.card.correct").length >= 2) {
+        const $win = $(".correct");
+
+        if ($win.length === 4) {
+          let score = 0;
+          let $rating = $(".rating li");
+          console.log($rating);
+          $(".modal-content").append("<p>You win! Your rating is: </p>");
+          while (score <= $rating.length) {
+            $(".modal-content p").append($rating[score]);
+            score++;
+          }
+          $(".modal-content p").append("You took " + currentTime);
+          $(".modal").toggle();
+          reset();
       }
+    }
   }
-};
+  
+  $(".close").click( () => {
+    $(".modal").toggle();
+  });
   
   //Check current move count to determine score
   setInterval(function scoreCheck() {
 //    console.log($('.rating li'));
-    if ($('#fifth') == true) {
+//    if ($("#fifth") == true) {
       if (moves > 4) {
-        $('#fifth').remove();
-        let copy = emptyStar.slice(0);
-        $('.rating').append(copy);
-        copy.splice(0, 1);
+        $("#fifth").remove();
+//        let copy = emptyStar.slice(0);
+//        $(".rating").append(copy);
+//        copy.splice(0, 1);
       }
-    }
+//    }
     
     if (moves > 32) {
-      $('#fourth').remove();
+      $("#fourth").remove();
     }
     
     if (moves > 40) {
-      $('#third').remove();
+      $("#third").remove();
     }
     
     if (moves > 48) {
-      $('#second').remove();
+      $("#second").remove();
     }
   }, 100);
   
-  $('.reset').click( () => {
+  $(".reset").click( () => {
     reset();
   });
 });
