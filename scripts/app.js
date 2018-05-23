@@ -173,7 +173,7 @@ $(document).ready( () => {
           let $rating = $(".rating li");
           clearInterval(timerFunc);
           $(".modal-content p").remove();
-          $(".modal-content h2").append(`<p>You made ${moves} moves and got a rating of: </p>`);
+          $(".modal-content h2").after(`<p>You made ${moves} moves and got a rating of: </p>`);
           while (score <= $rating.length) {
             $(".modal-content p").append($rating[score]);
             score++;

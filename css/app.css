@@ -14,8 +14,10 @@ html {
 }
 
 body {
-  background: url("../imgs/game-bg.png") no-repeat center center fixed;
+/*
+  background: url("../imgs/game-bg.jpg") no-repeat center center fixed;
   background-size: cover;
+*/
 }
 
 
@@ -50,7 +52,7 @@ body {
 }
 
 .rating li {
-  padding-left: 15px;
+  padding-left: 10px;
   min-width: 40px;
 }
 
@@ -210,46 +212,63 @@ Example for proper (proportional) scaling of video/images
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    justify-content: center;
+  display: flex; /* Hidden by default */
+  justify-content: center;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
     display: flex;
-    background-color: #fefefe;
-   /* margin: 25% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 100%; /* Could be more or less, depending on screen size */
-    height: 100%;
-    list-style-type: none;
-    align-self: center;
-    justify-content: center;
-    justify-self: center;    
+  background-color: #fefefe;
+  /*margin: 25% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 100%; /* Could be more or less, depending on screen size */
+  height: 100%;
+  list-style-type: none;
+  flex-direction: column;
+/*  align-self: center;*/
+/*  justify-content: center;*/
+/*  justify-self: center;    */
 }
 
 .modal-content h2 {
-  display: block;
+  color: red;
+  margin:30% auto 0 auto;
+}
+
+.modal-content p {
+  margin: 10px auto;
 }
 
 .modal-content li {
   display: inline-flex;
 }
 
+.modal-content button {
+  display: flex;
+  padding: 1.5rem;
+  border-radius: 15%;
+  background-color: coral;
+  color: antiquewhite;
+  align-self: center;
+  justify-content: center;
+}
+
 /* The Close Button */
 .close {
+    display: flex;
     color: #aaa;
-    justify-items: flex-end;
+    justify-content: flex-end;
     align-self: flex-start;
     font-size: 28px;
     font-weight: bold;
