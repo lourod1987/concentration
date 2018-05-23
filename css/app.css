@@ -212,7 +212,8 @@ Example for proper (proportional) scaling of video/images
 
 /* The Modal (background) */
 .modal {
-  display: flex; /* Hidden by default */
+  display: flex; 
+  display: none;/* Hidden by default */
   justify-content: center;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -227,7 +228,7 @@ Example for proper (proportional) scaling of video/images
 
 /* Modal Content/Box */
 .modal-content {
-    display: flex;
+  display: flex;
   background-color: #fefefe;
   /*margin: 25% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -236,9 +237,6 @@ Example for proper (proportional) scaling of video/images
   height: 100%;
   list-style-type: none;
   flex-direction: column;
-/*  align-self: center;*/
-/*  justify-content: center;*/
-/*  justify-self: center;    */
 }
 
 .modal-content h2 {
