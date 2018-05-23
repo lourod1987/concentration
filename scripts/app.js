@@ -8,16 +8,16 @@ $(document).ready( () => {
   let timerFunc;
   let currentTime;
   const shuffleDeck = [
-    '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
-    '<span><img src="../imgs/phoenix_noun_cc.svg">Phoenix</span>',
-    '<span><img src="../imgs/dragon_noun_cc.svg">Dragon</span>',
-    '<span><img src="../imgs/dragon_noun_cc.svg">Dragon</span>',
-    '<span><img src="../imgs/pegasus_noun_cc.svg">Pegasus</span>',
-    '<span><img src="../imgs/pegasus_noun_cc.svg">Pegasus</span>',
+    '<span><img src="../imgs/phoenix.svg">Phoenix</span>',
+    '<span><img src="../imgs/phoenix.svg">Phoenix</span>',
+    '<span><img src="../imgs/dragon.svg">Dragon</span>',
+    '<span><img src="../imgs/dragon.svg">Dragon</span>',
+    '<span><img src="../imgs/pegasus.svg">Pegasus</span>',
+    '<span><img src="../imgs/pegasus.svg">Pegasus</span>',
     '<span><img src="../imgs/golem.svg">Golem</span>',
     '<span><img src="../imgs/golem.svg">Golem</span>',
-    '<span><img src="../imgs/siren_noun_cc.svg">Siren</span>',
-    '<span><img src="../imgs/siren_noun_cc.svg">Siren</span>',
+    '<span><img src="../imgs/siren.svg">Siren</span>',
+    '<span><img src="../imgs/siren.svg">Siren</span>',
     '<span><img src="../imgs/hydra.svg">Hydra</span>',
     '<span><img src="../imgs/hydra.svg">Hydra</span>',
     '<span><img src="../imgs/elf.svg">Elf</span>',
@@ -157,7 +157,7 @@ $(document).ready( () => {
     timer = [0, 0];
     timeRunning = false;
     $(".timer span").remove();
-   $(".timer").append("<span>--:--</span>");
+    $(".timer").append("<span>--:--</span>");
     setTimeout(function resetAnim() {
       $(".info div").removeClass("reset-animate ");
     }, 625);
@@ -171,18 +171,23 @@ $(document).ready( () => {
         if ($win.length === 4) {
           let score = 0;
           let $rating = $(".rating li");
-          console.log($rating);
-          $(".modal-content").append("<p>You win! Your rating is: </p>");
+          clearInterval(timerFunc);
+          $(".modal-content p").remove();
+          $(".modal-content h2").append(`<p>You made ${moves} moves and got a rating of: </p>`);
           while (score <= $rating.length) {
             $(".modal-content p").append($rating[score]);
             score++;
           }
-          $(".modal-content p").append("You took " + currentTime);
+          $(".modal-content p").append(`You took ${currentTime} to complete this game.`);
           $(".modal").toggle();
-          reset();
       }
     }
   }
+  
+  $(".play-again").click( () => {
+    reset();
+    $(".modal").toggle();
+  });
   
   $(".close").click( () => {
     $(".modal").toggle();

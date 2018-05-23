@@ -1,3 +1,5 @@
+/* Global Styles
+===============================*/
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -11,6 +13,14 @@ html {
   padding: 0;
 }
 
+body {
+  background: url("../imgs/game-bg.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+/* Header and Info Section
+===============================*/
 .header h1 {
   font-family: 'Holtwood One SC', serif;
   font-size: 2.4rem;
@@ -70,6 +80,9 @@ html {
   -webkit-animation-timing-function: ease-in-out;
 }
 
+
+/* Deck Styles
+===============================*/
 main {
   display: flex;
   justify-content: center;
@@ -212,17 +225,21 @@ Example for proper (proportional) scaling of video/images
 
 /* Modal Content/Box */
 .modal-content {
-    display: inline-flex;
+    display: flex;
     background-color: #fefefe;
-   /* margin: 15% auto; /* 15% from the top and centered */
-    margin: auto;
+   /* margin: 25% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 100%; /* Could be more or less, depending on screen size */
+    height: 100%;
     list-style-type: none;
     align-self: center;
     justify-content: center;
     justify-self: center;    
+}
+
+.modal-content h2 {
+  display: block;
 }
 
 .modal-content li {
@@ -232,7 +249,7 @@ Example for proper (proportional) scaling of video/images
 /* The Close Button */
 .close {
     color: #aaa;
-    justify-self: flex-end;
+    justify-items: flex-end;
     align-self: flex-start;
     font-size: 28px;
     font-weight: bold;
