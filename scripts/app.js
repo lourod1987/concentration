@@ -120,7 +120,7 @@ $(document).ready( () => {
             moves++;
             $(".count").remove();
             $(".moves").prepend('<span class="count">' + moves + '</span>');
-            setTimeout(win(), 650);
+            win();
           } else {
             $(".selected").addClass("incorrect");
             $($cards).removeClass("selected");
@@ -181,10 +181,10 @@ $(document).ready( () => {
           $(".modal-content p").after(`<p>You took ${currentTime} to complete this game.</p>`);
           
           if ($rating.length === 5) {
-            $(".modal-content img").remove();
-            $(".modal-content h2").before('<img src="../imgs/angel.png" alt="Angel with halo and arms wide open">');
+            $(".modal-content img#reg-win").remove();
+            $(".modal-content h2").before('<img src="../imgs/angel.png" alt="Angel with halo and arms wide open" id="mythic-win">');
             $(".modal-content h2").remove();
-            $(".modal-content img").after("<h2>Mythic Victory! You are godlike!</h2>")
+            $(".modal-content img#mythic-win").after("<h2>Mythic Victory! You are godlike!</h2>");
           }
           $(".modal").toggle();
       }
