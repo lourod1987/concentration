@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background: url("../imgs/game-bg.jpg") no-repeat center center fixed;
+  background: url("../imgs/game-bg.svg") no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -43,7 +43,9 @@ body {
   font-weight: 600;
   background-color: #2C4861;
   border-radius: 25px;
-  max-width: 75%;
+/*  border: 8px dashed white;*/
+  min-width: 700px;
+  max-width: 700px;
   margin: 15px auto 15px auto;
 }
 
@@ -53,11 +55,16 @@ body {
   padding: 5px;
   font-size: 24px;
   align-self: center;
+  min-width: 320px;
 }
 
 .rating li {
   padding-left: 10px;
   min-width: 40px;
+}
+
+.rating li img {
+  width: 45px;
 }
 
 .moves {
@@ -71,7 +78,7 @@ body {
 }
 
 .reset {
-  min-width: 45px;
+  width: 55px;
   padding: 10px;
   cursor:pointer;
   align-self: center;
@@ -86,6 +93,19 @@ body {
   -webkit-animation-timing-function: ease-in-out;
 }
 
+.sound {
+  align-self: center;
+  cursor: pointer;
+}
+
+#mute {
+  display: none;
+  width: 30px;
+}
+
+#play {
+  width: 30px;
+}
 
 /* Deck Styles
 ===============================*/
@@ -107,15 +127,21 @@ main {
 }
 
 .card {
+  font-family: 'Holtwood One SC', serif;
+  color: #C99A48;
   min-height: 170px;
   max-height: 170px;
   min-width: 150px;
   max-width: 150px;
-  padding: 5px;
-  border: 1px solid black;
+  padding: 10px;
+  border: 1.5px solid black;
   border-radius: 20px;
   text-align: center;
   background-color: #2C4861;
+}
+
+.card i img{
+  width: 120px;
 }
 
 /*
@@ -160,10 +186,6 @@ Example for proper (proportional) scaling of video/images
   cursor:pointer;
 }
 
-.deck li span {
-  color: black;
-}
-
 .incorrect {
   background-color: #D51717;
   position: relative;
@@ -176,8 +198,6 @@ Example for proper (proportional) scaling of video/images
 }
 
 .selected {
-/*  padding: 30px;*/
-  
   background-color: white; /* hightlight select color: #23CE6B*/
   pointer-events: none;
   cursor: default;
@@ -190,8 +210,7 @@ Example for proper (proportional) scaling of video/images
 }
 
 .correct {
-/*  padding: 30px;*/
-  
+  color: white;
   background-color: #48E500;
   pointer-events: none;
   cursor: default;
@@ -277,6 +296,11 @@ footer {
   display: inline-flex;
 }
 
+.modal li img {
+  width: 45px;
+  height:45px;
+}
+
 .modal-content button {
   display: flex;
   padding: 1.3rem;
@@ -290,6 +314,9 @@ footer {
   align-self: center;
 }
 
+#mythic-win {
+	display:none;
+}
 /* The Close Button */
 .close {
     float: right;

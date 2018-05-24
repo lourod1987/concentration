@@ -7,6 +7,11 @@ $(document).ready( () => {
   let timeRunning = false;
   let timerFunc;
   let currentTime;
+  let resetAudio = document.getElementById("reset-sound");
+  let correctAudio = document.getElementById("correct-sound");
+  let failAudio = document.getElementById("fail-sound");
+  let flipAudio = document.getElementById("flip-sound");
+  let winAudio = document.getElementById("win-sound");
   const shuffleDeck = [
     '<span><img src="../imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
     '<span><img src="../imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
@@ -93,7 +98,7 @@ $(document).ready( () => {
     $(cur).addClass("selected");
     
     const $selection = $(".selected");
-    
+    flipAudio.play();
 //    setTimeout(function lock() {
 //      if ($selection.length === 2) {
 //        $('.card').addClass("lock");
@@ -110,9 +115,10 @@ $(document).ready( () => {
           let select1 = $selection[0].textContent;
           let select2 = $selection[1].textContent;
           let correct1 = $selection[0];
-          let correct2 = $selection[1]
+          let correct2 = $selection[1];
 
           if (select1 === select2) {
+            correctAudio.play();
             $(correct1).addClass("correct");
             $(correct2).addClass("correct");
             $("li.card.correct span").removeClass("default");
@@ -122,6 +128,7 @@ $(document).ready( () => {
             $(".moves").prepend('<span class="count">' + moves + '</span>');
             win();
           } else {
+            failAudio.play();
             $(".selected").addClass("incorrect");
             $($cards).removeClass("selected");
             $(".default").hide();
@@ -140,8 +147,9 @@ $(document).ready( () => {
   
   //reset game
   function reset() {
+    resetAudio.play();
     moves = 0;
-    $(".info div").addClass("reset-animate ");
+    $(".info div.reset").addClass("reset-animate");
     $(".count").remove();
     $(".moves").prepend('<span class="count"> - </span>');
     $("li.card").removeClass("correct");
@@ -158,22 +166,44 @@ $(document).ready( () => {
     timeRunning = false;
     $(".timer span").remove();
     $(".timer").append("<span>--:--</span>");
+    $("#mythic-win").hide();
+    $("#mythic-text").remove();
+    $(".modal-content img#reg-win").removeClass("default");
+    $(".modal-content h2").removeClass("default");
     setTimeout(function resetAnim() {
       $(".info div").removeClass("reset-animate ");
     }, 625);
   }
+  
+  $("div.sound").click( () => {
+    $("#mute").toggle();
+    $("#play").toggle();
+    if (resetAudio.muted === true){
+      resetAudio.muted = false;
+      failAudio.muted = false;
+      correctAudio.muted = false;
+      flipAudio.muted = false;
+      winAudio.muted = false;
+    } else {
+      resetAudio.muted = true;
+      failAudio.muted = true;
+      correctAudio.muted = true;
+      flipAudio.muted = true;
+      winAudio.muted = true;
+    }
+  });
 
   //Check to see if win condition is met
   function win() {
     if ($("li.card.correct").length >= 2) {
         const $win = $(".correct");
 
-        if ($win.length === 4) {
+        if ($win.length === 16) {
           let score = 0;
           let $rating = $(".rating li");
           
           clearInterval(timerFunc);
-          $(".cleanup").remove();
+          $("p.cleanup").remove();
           
           $(".modal-content h2").after(`<p class="cleanup">You made ${moves} moves and scored a rating of: </p>`);
           
@@ -184,17 +214,13 @@ $(document).ready( () => {
           
           $(".modal-content p").after(`<p class="cleanup">You took ${currentTime} to complete this game.</p>`);
           
+          winAudio.play();
+          
           if ($rating.length === 5) {
-            $("img#mythic-win").remove();
+            $("#mythic-win").toggle();
             $("img#reg-win").addClass("default");
-            $(".modal-content h2").before('<img src="../imgs/angel.png" alt="Angel with halo and arms wide open" id="mythic-win">');
             $(".modal-content h2").addClass("default");
-            $(".modal-content img#mythic-win").after('<h2 id="mythic-text">Mythic Victory! You are godlike!</h2>');
-          } else {
-            $("#mythic-win").remove();
-            $("#mythic-text").remove();
-            $(".modal-content img#reg-win").removeClass("default");
-            $(".modal-content h2").removeClass("default");
+            $("#mythic-win").after('<h2 id="mythic-text">Mythic Victory! You are godlike!</h2>');
           }
           
           $(".modal").toggle();

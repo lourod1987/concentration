@@ -29,6 +29,7 @@
     <i class="moves"><span class="count"> - </span> Moves</i>
     <p class="timer">Time <span class="time-count">--:--</span></p>
     <div class="reset"><img src="imgs/reset.svg" alt="reset game icon"></div>
+    <div class="sound"><span><img src="imgs/volume-x.svg" id="mute"></span><img src="imgs/volume.svg" id="play"></div>
   </section> <!-- game info -->
 
   <main class="whole-body">
@@ -88,11 +89,34 @@
   <!-- Modal content -->
     <div class="modal-content">
      <span class="close">&times;</span>
+     <img src="../imgs/angel.png" alt="Angel with halo and arms wide open" id="mythic-win">
      <img src="imgs/win.png" alt="Posiedon with glowing crown" id="reg-win">
      <h2>Poseidon Congratulates You! You embody Nike herself!</h2>
      <button class="play-again">Play Again!</button>
     </div>
   </div>
+  
+  <audio id="flip-sound">
+    <source src="/audio/240776__f4ngy__card-flip.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="fail-sound">
+    <source src="/audio/67454__splashdust__negativebeep.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="correct-sound">
+    <source src="/audio/421002__eponn__correct.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="reset-sound">
+    <source src="/audio/19245__deathpie__shuffle.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="win-sound">
+    <source src="/audio/145428__soughtaftersounds__mystic-flutter-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  
   </main>
     <!-- // Footer & contact info -->
   <footer>
