@@ -171,21 +171,32 @@ $(document).ready( () => {
         if ($win.length === 4) {
           let score = 0;
           let $rating = $(".rating li");
+          
           clearInterval(timerFunc);
-          $(".modal-content p").remove();
-          $(".modal-content h2").after(`<p>You made ${moves} moves and scored a rating of: </p>`);
+          $(".cleanup").remove();
+          
+          $(".modal-content h2").after(`<p class="cleanup">You made ${moves} moves and scored a rating of: </p>`);
+          
           while (score <= $rating.length) {
             $(".modal-content p").append($rating[score]);
             score++;
           }
-          $(".modal-content p").after(`<p>You took ${currentTime} to complete this game.</p>`);
+          
+          $(".modal-content p").after(`<p class="cleanup">You took ${currentTime} to complete this game.</p>`);
           
           if ($rating.length === 5) {
-            $(".modal-content img#reg-win").remove();
+            $("img#mythic-win").remove();
+            $("img#reg-win").addClass("default");
             $(".modal-content h2").before('<img src="../imgs/angel.png" alt="Angel with halo and arms wide open" id="mythic-win">');
-            $(".modal-content h2").remove();
-            $(".modal-content img#mythic-win").after("<h2>Mythic Victory! You are godlike!</h2>");
+            $(".modal-content h2").addClass("default");
+            $(".modal-content img#mythic-win").after('<h2 id="mythic-text">Mythic Victory! You are godlike!</h2>');
+          } else {
+            $("#mythic-win").remove();
+            $("#mythic-text").remove();
+            $(".modal-content img#reg-win").removeClass("default");
+            $(".modal-content h2").removeClass("default");
           }
+          
           $(".modal").toggle();
       }
     }
