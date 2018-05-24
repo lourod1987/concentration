@@ -8,30 +8,30 @@ $(document).ready( () => {
   let timerFunc;
   let currentTime;
   const shuffleDeck = [
-    '<span><img src="../imgs/phoenix.svg">Phoenix</span>',
-    '<span><img src="../imgs/phoenix.svg">Phoenix</span>',
-    '<span><img src="../imgs/dragon.svg">Dragon</span>',
-    '<span><img src="../imgs/dragon.svg">Dragon</span>',
-    '<span><img src="../imgs/pegasus.svg">Pegasus</span>',
-    '<span><img src="../imgs/pegasus.svg">Pegasus</span>',
-    '<span><img src="../imgs/golem.svg">Golem</span>',
-    '<span><img src="../imgs/golem.svg">Golem</span>',
-    '<span><img src="../imgs/siren.svg">Siren</span>',
-    '<span><img src="../imgs/siren.svg">Siren</span>',
-    '<span><img src="../imgs/hydra.svg">Hydra</span>',
-    '<span><img src="../imgs/hydra.svg">Hydra</span>',
-    '<span><img src="../imgs/elf.svg">Elf</span>',
-    '<span><img src="../imgs/elf.svg">Elf</span>',
-    '<span><img src="../imgs/dwarf.svg">Dwarf</span>',
-    '<span><img src="../imgs/dwarf.svg">Dwarf</span>'
+    '<span><img src="../imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
+    '<span><img src="../imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
+    '<span><img src="../imgs/dragon.svg" alt="Green dragon">Dragon</span>',
+    '<span><img src="../imgs/dragon.svg" alt="Green dragon">Dragon</span>',
+    '<span><img src="../imgs/pegasus.svg" alt="Rearing pegasus">Pegasus</span>',
+    '<span><img src="../imgs/pegasus.svg" alt="Rearing pegasus">Pegasus</span>',
+    '<span><img src="../imgs/golem.svg" alt="Golem rock creature">Golem</span>',
+    '<span><img src="../imgs/golem.svg" alt="Golem rock creature">Golem</span>',
+    '<span><img src="../imgs/siren.svg" alt="Siren singing">Siren</span>',
+    '<span><img src="../imgs/siren.svg" alt="Siren singing">Siren</span>',
+    '<span><img src="../imgs/hydra.svg" alt="Hydra ready to attack">Hydra</span>',
+    '<span><img src="../imgs/hydra.svg" alt="Hydra ready to attack">Hydra</span>',
+    '<span><img src="../imgs/elf.svg" alt="Elf head, long pointy ears">Elf</span>',
+    '<span><img src="../imgs/elf.svg" alt="Elf head, long pointy ears">Elf</span>',
+    '<span><img src="../imgs/dwarf.svg" alt="Dwarf with helmet and thick beard">Dwarf</span>',
+    '<span><img src="../imgs/dwarf.svg" alt="Dwarf with helmet and thick beard">Dwarf</span>'
   ];
   
   const score = [
     '<li><img src="../imgs/primary-star.svg"></li>',
-    '<li id="second"><img src="../imgs/primary-star.svg"></li>',
-    '<li id="third"><img src="../imgs/primary-star.svg"></li>',
-    '<li id="fourth"><img src="../imgs/primary-star.svg"></li>',
-    '<li id="fifth"><img src="../imgs/primary-star.svg"></li>'
+    '<li id="second"><img src="../imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="third"><img src="../imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="fourth"><img src="../imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="fifth"><img src="../imgs/primary-star.svg" alt="golden star"></li>'
   ];
   
   const emptyStar = ['<li><img src="../imgs/empty-star.svg"></li>'];
@@ -173,12 +173,19 @@ $(document).ready( () => {
           let $rating = $(".rating li");
           clearInterval(timerFunc);
           $(".modal-content p").remove();
-          $(".modal-content h2").after(`<p>You made ${moves} moves and got a rating of: </p>`);
+          $(".modal-content h2").after(`<p>You made ${moves} moves and scored a rating of: </p>`);
           while (score <= $rating.length) {
             $(".modal-content p").append($rating[score]);
             score++;
           }
-          $(".modal-content p").append(`You took ${currentTime} to complete this game.`);
+          $(".modal-content p").after(`<p>You took ${currentTime} to complete this game.</p>`);
+          
+          if ($rating.length === 5) {
+            $(".modal-content img").remove();
+            $(".modal-content h2").before('<img src="../imgs/angel.png" alt="Angel with halo and arms wide open">');
+            $(".modal-content h2").remove();
+            $(".modal-content img").after("<h2>Mythic Victory! You are godlike!</h2>")
+          }
           $(".modal").toggle();
       }
     }
@@ -197,7 +204,7 @@ $(document).ready( () => {
   setInterval(function scoreCheck() {
 //    console.log($('.rating li'));
 //    if ($("#fifth") == true) {
-      if (moves > 4) {
+      if (moves > 12) {
         $("#fifth").remove();
 //        let copy = emptyStar.slice(0);
 //        $(".rating").append(copy);
@@ -205,15 +212,15 @@ $(document).ready( () => {
       }
 //    }
     
-    if (moves > 32) {
+    if (moves > 18) {
       $("#fourth").remove();
     }
     
-    if (moves > 40) {
+    if (moves > 24) {
       $("#third").remove();
     }
     
-    if (moves > 48) {
+    if (moves > 30) {
       $("#second").remove();
     }
   }, 100);

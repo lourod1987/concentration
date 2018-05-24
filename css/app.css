@@ -14,10 +14,8 @@ html {
 }
 
 body {
-/*
   background: url("../imgs/game-bg.jpg") no-repeat center center fixed;
   background-size: cover;
-*/
 }
 
 
@@ -41,6 +39,9 @@ body {
   justify-content: center;
   margin-top: 25px;
   margin-bottom: 20px;
+  font-family: 'Bungee Inline', cursive;
+  color: #fff;
+  font-size: 1.4rem;
 }
 
 .rating {
@@ -229,9 +230,9 @@ Example for proper (proportional) scaling of video/images
 /* Modal Content/Box */
 .modal-content {
   display: flex;
-  background-color: #fefefe;
+  background-color: #00A99D;
   /*margin: 25% auto; /* 15% from the top and centered */
-  padding: 20px;
+  padding: 10%;
   border: 1px solid #888;
   width: 100%; /* Could be more or less, depending on screen size */
   height: 100%;
@@ -239,13 +240,25 @@ Example for proper (proportional) scaling of video/images
   flex-direction: column;
 }
 
+.modal-content img {
+  max-width: 120px;
+  margin: 0 auto 0 auto;
+}
 .modal-content h2 {
-  color: red;
-  margin:30% auto 0 auto;
+  font-family: 'Alfa Slab One', cursive;
+  color:  #FFC766;
+  font-weight: 100;
+  text-shadow: 0px 0px 8px rgba(255, 255, 130, 0.75);
+/*  background-color: black;*/
+  margin: 0 auto 0 auto;
 }
 
 .modal-content p {
   margin: 10px auto;
+  color: #fff;
+  font-family: 'Bungee Inline', cursive;
+  font-weight: bold;
+  font-size: 1.6rem;
 }
 
 .modal-content li {
@@ -254,22 +267,23 @@ Example for proper (proportional) scaling of video/images
 
 .modal-content button {
   display: flex;
-  padding: 1.5rem;
-  border-radius: 15%;
+  padding: 1.3rem;
+  margin-top: 50px;
+  border-radius: 20px;
+  font-family: 'Alfa Slab One', cursive;
+  font-weight: 100;
   background-color: coral;
   color: antiquewhite;
   align-self: center;
-  justify-content: center;
 }
 
 /* The Close Button */
 .close {
-    display: flex;
+    float: right;
     color: #aaa;
-    justify-content: flex-end;
     align-self: flex-start;
     font-size: 28px;
-    font-weight: bold;
+    font-weight: 800;
 }
 
 .close:hover,
