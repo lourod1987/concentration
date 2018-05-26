@@ -7,11 +7,15 @@ $(document).ready( () => {
   let timeRunning = false;
   let timerFunc;
   let currentTime;
-  let resetAudio = document.getElementById("reset-sound");
-  let correctAudio = document.getElementById("correct-sound");
-  let failAudio = document.getElementById("fail-sound");
-  let flipAudio = document.getElementById("flip-sound");
-  let winAudio = document.getElementById("win-sound");
+  let lockCounter = 0;
+  const resetAudio = document.getElementById("reset-sound");
+  const correctAudio = document.getElementById("correct-sound");
+  const failAudio = document.getElementById("fail-sound");
+  const flipAudio = document.getElementById("flip-sound");
+  const winAudio = document.getElementById("win-sound");
+  const starLossAudio = document.getElementById("star_loss-sound");
+  const volOnAudio = document.getElementById("volume_on-sound");
+  
   const shuffleDeck = [
     '<span><img src="../imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
     '<span><img src="../imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
@@ -39,8 +43,9 @@ $(document).ready( () => {
     '<li id="fifth"><img src="../imgs/primary-star.svg" alt="golden star"></li>'
   ];
   
-  const emptyStar = ['<li><img src="../imgs/empty-star.svg"></li>'];
+  const emptyStar = ['<li><img src="../imgs/empty-star.svg" alt="empty star"></li>'];
   
+  //shuffle the deck of cards randomly
   function shuffle() {
     let copy = shuffleDeck.slice(0); //make copy of shuffleDeck array
     let currentI = copy.length;
@@ -49,101 +54,12 @@ $(document).ready( () => {
     while (currentI > 0) {
       let rand = Math.floor(Math.random() * currentI);
     
-//    console.log('random num: ' + rand); //current random interger
-//    console.log(`rand card: ${shuffleDeck[rand]}`); //selected span by rand
       $($cards[num]).append(copy[rand]);
-//    console.log($cards[num]); //selected card slot
       copy.splice(rand, 1);
-//    console.log(`current deck: 
-//    ${shuffleDeck}`); //what the shuffleDeck array looks like after splice
       currentI--;
       num++;
     }
   }
-  
-  shuffle();
-  
-  function leadingZero(time) {
-    if (time <= 9) {
-      time = `0${time}`;
-    }
-    return time;
-  }
-  
-  const $front = $(".deck li span");
-  $front.addClass("default");
-  
-  
-  //on card click
-  $($cards).click( (evt) => {
-    if (!timeRunning) {
-      timeRunning = true;
-      timerFunc = setInterval(function runTimer() {
-        timer[1]++;
-
-        if (timer[1] > 59) {
-          timer[1] = 0;
-          timer[0]++;
-        }
-        
-        currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]);
-        $('.timer span').remove();
-        $('.timer').append('<span>' + currentTime + '<span>');
-      }, 1000);
-    }
-    
-    let cur = evt.currentTarget;
-    $(cur).find("i").toggle();
-    $(cur).find("span").toggle();
-    $(cur).addClass("selected");
-    
-    const $selection = $(".selected");
-    flipAudio.play();
-//    setTimeout(function lock() {
-//      if ($selection.length === 2) {
-//        $('.card').addClass("lock");
-//      } 
-//      if ($selection.length < 2) {
-//        $('.card').removeClass("lock");
-//      }
-//      console.log($selection.length);
-//    }, 100);
-    
-    //selection check
-     setTimeout(function check() {
-        if ($selection.length > 1) {
-          let select1 = $selection[0].textContent;
-          let select2 = $selection[1].textContent;
-          let correct1 = $selection[0];
-          let correct2 = $selection[1];
-
-          if (select1 === select2) {
-            correctAudio.play();
-            $(correct1).addClass("correct");
-            $(correct2).addClass("correct");
-            $("li.card.correct span").removeClass("default");
-            $("li.card").removeClass("selected");
-            moves++;
-            $(".count").remove();
-            $(".moves").prepend('<span class="count">' + moves + '</span>');
-            win();
-          } else {
-            failAudio.play();
-            $(".selected").addClass("incorrect");
-            $($cards).removeClass("selected");
-            $(".default").hide();
-            $(".default").prev().show();
-            $("li.card").removeClass("selected");
-            moves++;
-            $(".count").remove();
-            $(".moves").prepend('<span class="count">' + moves + '</span>');
-            setTimeout(function wrongAnim() {
-              $("li.card").removeClass("incorrect");
-            }, 425);
-          }
-        }
-     }, 500);
-  });
   
   //reset game
   function reset() {
@@ -161,62 +77,73 @@ $(document).ready( () => {
     $(".rating li").remove();
     $(".rating").append(score);
     clearInterval(timerFunc);
-//    timerFunc = null;
     timer = [0, 0];
     timeRunning = false;
     $(".timer span").remove();
     $(".timer").append("<span>--:--</span>");
+    lockCounter = 0;
     $("#mythic-win").hide();
     $("#mythic-text").remove();
     $(".modal-content img#reg-win").removeClass("default");
     $(".modal-content h2").removeClass("default");
     setTimeout(function resetAnim() {
-      $(".info div").removeClass("reset-animate ");
+      $(".info div").removeClass("reset-animate");
     }, 625);
   }
   
-  $("div.sound").click( () => {
-    $("#mute").toggle();
-    $("#play").toggle();
-    if (resetAudio.muted === true){
-      resetAudio.muted = false;
-      failAudio.muted = false;
-      correctAudio.muted = false;
-      flipAudio.muted = false;
-      winAudio.muted = false;
-    } else {
-      resetAudio.muted = true;
-      failAudio.muted = true;
-      correctAudio.muted = true;
-      flipAudio.muted = true;
-      winAudio.muted = true;
+  //Check current move count to determine score
+  function scoreCheck() {
+    let copy = emptyStar.slice(0);
+    switch (moves) {
+      case 13:
+        starLossAudio.play();
+        $("#fifth").remove();
+        $(".rating").append(copy);
+        break;
+      case 19:
+        starLossAudio.play();
+        $("#fourth").remove();
+        $(".rating").append(copy);
+        break;
+      case 25:
+        starLossAudio.play();
+        $("#third").remove();
+        $(".rating").append(copy);
+        break;
+      case 31:
+        starLossAudio.play();
+        $("#second").remove();
+        $(".rating").append(copy);
+        break;
     }
-  });
+  }
 
   //Check to see if win condition is met
-  function win() {
-    if ($("li.card.correct").length >= 2) {
+  function winCheck() {
+    if ($("li.card.correct").length >= 14) {
         const $win = $(".correct");
 
         if ($win.length === 16) {
           let score = 0;
           let $rating = $(".rating li");
+          let copyR = $rating.slice(0);
           
           clearInterval(timerFunc);
           $("p.cleanup").remove();
           
           $(".modal-content h2").after(`<p class="cleanup">You made ${moves} moves and scored a rating of: </p>`);
           
-          while (score <= $rating.length) {
-            $(".modal-content p").append($rating[score]);
+          while (score <= copyR.length) {
+            $(".modal-content p").append(copyR[score]);
             score++;
           }
           
-          $(".modal-content p").after(`<p class="cleanup">You took ${currentTime} to complete this game.</p>`);
+          $(".modal-content p").after(`<p class="cleanup">You took ${currentTime} to complete this game.</p>
+            <p class="cleanup">Try to win in fewer moves and less time!</p>`);
           
           winAudio.play();
           
-          if ($rating.length === 5) {
+          if (moves <= 12) {
             $("#mythic-win").toggle();
             $("img#reg-win").addClass("default");
             $(".modal-content h2").addClass("default");
@@ -228,6 +155,119 @@ $(document).ready( () => {
     }
   }
   
+  //add leading 0's to timer
+  function leadingZero(time) {
+    if (time <= 9) {
+      time = `0${time}`;
+    }
+    return time;
+  }
+  
+  shuffle();
+  const $front = $(".deck li span");
+  $front.addClass("default");
+  
+  //on card click
+  $($cards).click( (evt) => {
+    if (!timeRunning) {
+      timeRunning = true;
+      timerFunc = setInterval(function runTimer() {
+      timer[1]++;
+
+      if (timer[1] > 59) {
+        timer[1] = 0;
+        timer[0]++;
+      }
+
+      currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]);
+      $('.timer span').remove();
+      $('.timer').append(`<span>${currentTime}<span>`);
+      }, 1000);
+    }
+    
+    const lockUnlock = function cardLock() {
+        if (lockCounter === 2) {
+          console.log("lock");
+          $('.card').addClass("lock");
+        } else {
+          console.log("unlock");
+          $('.card').removeClass("lock");
+        }
+      }
+    
+    lockCounter++;
+    let cur = evt.currentTarget;
+    $(cur).find("i").toggle();
+    $(cur).find("span").toggle();
+    $(cur).addClass("selected");
+    const $selection = $(".selected");
+    setTimeout(lockUnlock, 0);
+    flipAudio.play();
+    
+    //selection check
+     setTimeout(function check() {
+        if ($selection.length === 2) {
+          let select1 = $selection[0].textContent;
+          let select2 = $selection[1].textContent;
+          let correct1 = $selection[0];
+          let correct2 = $selection[1];
+
+          if (select1 === select2) {
+            correctAudio.play();
+            $(correct1).addClass("correct");
+            $(correct2).addClass("correct");
+            $("li.card.correct span").removeClass("default");
+            $("li.card").removeClass("selected");
+            moves++;
+            scoreCheck();
+            $(".count").remove();
+            $(".moves").prepend('<span class="count">' + moves + '</span>');
+            lockCounter = 0;
+            winCheck();
+          } else {
+            failAudio.play();
+            $(".selected").addClass("incorrect");
+            $($cards).removeClass("selected");
+            $(".default").hide();
+            $(".default").prev().show();
+            $("li.card").removeClass("selected");
+            moves++;
+            scoreCheck();
+            $(".count").remove();
+            $(".moves").prepend('<span class="count">' + moves + '</span>');
+            setTimeout(function wrongAnim() {
+              $("li.card").removeClass("incorrect");
+            }, 425);
+            lockCounter = 0;
+          }
+        }
+     }, 500);
+    
+    setTimeout(lockUnlock, 510);
+    
+  });
+  
+  $("div.sound").click( () => {
+    $("#mute").toggle();
+    $("#play").toggle();
+    if (resetAudio.muted === true){
+      volOnAudio.play();
+      resetAudio.muted = false;
+      failAudio.muted = false;
+      correctAudio.muted = false;
+      flipAudio.muted = false;
+      winAudio.muted = false;
+      starLossAudio.muted = false;
+    } else {
+      resetAudio.muted = true;
+      failAudio.muted = true;
+      correctAudio.muted = true;
+      flipAudio.muted = true;
+      winAudio.muted = true;
+      starLossAudio.muted = true;
+    }
+  });
+  
   $(".play-again").click( () => {
     reset();
     $(".modal").toggle();
@@ -237,32 +277,8 @@ $(document).ready( () => {
     $(".modal").toggle();
   });
   
-  //Check current move count to determine score
-  setInterval(function scoreCheck() {
-//    console.log($('.rating li'));
-//    if ($("#fifth") == true) {
-      if (moves > 12) {
-        $("#fifth").remove();
-//        let copy = emptyStar.slice(0);
-//        $(".rating").append(copy);
-//        copy.splice(0, 1);
-      }
-//    }
-    
-    if (moves > 18) {
-      $("#fourth").remove();
-    }
-    
-    if (moves > 24) {
-      $("#third").remove();
-    }
-    
-    if (moves > 30) {
-      $("#second").remove();
-    }
-  }, 100);
-  
   $(".reset").click( () => {
     reset();
   });
+  
 });
