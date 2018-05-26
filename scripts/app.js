@@ -1,9 +1,8 @@
 $(document).ready( () => {
   const $cards = $(".deck li");
   const $back = $('.deck li i');
-  let $timeCount = $('.time-count').text();
   let moves = 0;
-  let timer = [0, 0]
+  let timer = [0, 0];
   let timeRunning = false;
   let timerFunc;
   let currentTime;
@@ -185,12 +184,11 @@ $(document).ready( () => {
       }, 1000);
     }
     
+    //lock cards if 2 have already been selected
     const lockUnlock = function cardLock() {
         if (lockCounter === 2) {
-          console.log("lock");
           $('.card').addClass("lock");
         } else {
-          console.log("unlock");
           $('.card').removeClass("lock");
         }
       }
