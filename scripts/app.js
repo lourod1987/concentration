@@ -4,8 +4,8 @@ $(document).ready( () => {
   let moves = 0;
   let timer = [0, 0];
   let timeRunning = false;
-  let timerFunc;
   let currentTime;
+  let timeInt;
   let lockCounter = 0;
   const resetAudio = document.getElementById("reset-sound");
   const correctAudio = document.getElementById("correct-sound");
@@ -75,7 +75,7 @@ $(document).ready( () => {
     $back.show();
     $(".rating li").remove();
     $(".rating").append(score);
-    clearInterval(timerFunc);
+    clearInterval(timeInt);
     timer = [0, 0];
     timeRunning = false;
     $(".timer span").remove();
@@ -92,27 +92,28 @@ $(document).ready( () => {
   
   //Check current move count to determine score
   function scoreCheck() {
+    const $rating = $(".rating");;
     let copy = emptyStar.slice(0);
     switch (moves) {
       case 13:
         starLossAudio.play();
         $("#fifth").remove();
-        $(".rating").append(copy);
+        $rating.append(copy);
         break;
       case 19:
         starLossAudio.play();
         $("#fourth").remove();
-        $(".rating").append(copy);
+        $rating.append(copy);
         break;
       case 25:
         starLossAudio.play();
         $("#third").remove();
-        $(".rating").append(copy);
+        $rating.append(copy);
         break;
       case 31:
         starLossAudio.play();
         $("#second").remove();
-        $(".rating").append(copy);
+        $rating.append(copy);
         break;
     }
   }
@@ -162,6 +163,29 @@ $(document).ready( () => {
     return time;
   }
   
+  //increments timer, creates timer format, and updates timer
+  const timerFunc = function runTimer() {
+    timer[1]++;
+
+    if (timer[1] > 59) {
+      timer[1] = 0;
+      timer[0]++;
+    }
+
+    currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]);
+    $('.timer span').remove();
+    $('.timer').append(`<span>${currentTime}<span>`);
+  }
+  
+  //lock cards if 2 have already been selected
+    const lockUnlock = function cardLock() {
+        if (lockCounter === 2) {
+          $('.card').addClass("lock");
+        } else {
+          $('.card').removeClass("lock");
+        }
+      }
+    
   shuffle();
   const $front = $(".deck li span");
   $front.addClass("default");
@@ -170,28 +194,8 @@ $(document).ready( () => {
   $($cards).click( (evt) => {
     if (!timeRunning) {
       timeRunning = true;
-      timerFunc = setInterval(function runTimer() {
-      timer[1]++;
-
-      if (timer[1] > 59) {
-        timer[1] = 0;
-        timer[0]++;
-      }
-
-      currentTime = leadingZero(timer[0]) + ":" + leadingZero(timer[1]);
-      $('.timer span').remove();
-      $('.timer').append(`<span>${currentTime}<span>`);
-      }, 1000);
+      timeInt = setInterval(timerFunc, 1000);
     }
-    
-    //lock cards if 2 have already been selected
-    const lockUnlock = function cardLock() {
-        if (lockCounter === 2) {
-          $('.card').addClass("lock");
-        } else {
-          $('.card').removeClass("lock");
-        }
-      }
     
     lockCounter++;
     let cur = evt.currentTarget;
@@ -217,11 +221,15 @@ $(document).ready( () => {
             $("li.card.correct span").removeClass("default");
             $("li.card").removeClass("selected");
             moves++;
-            scoreCheck();
+            setTimeout(function scoreDelay() {
+              scoreCheck();
+            }, 450);
             $(".count").remove();
             $(".moves").prepend('<span class="count">' + moves + '</span>');
             lockCounter = 0;
-            winCheck();
+            setTimeout(function winDelay() {
+              winCheck();
+            }, 495);
           } else {
             failAudio.play();
             $(".selected").addClass("incorrect");
@@ -230,10 +238,12 @@ $(document).ready( () => {
             $(".default").prev().show();
             $("li.card").removeClass("selected");
             moves++;
-            scoreCheck();
+            setTimeout(function scoreDelay() {
+              scoreCheck();
+            }, 450);
             $(".count").remove();
             $(".moves").prepend('<span class="count">' + moves + '</span>');
-            setTimeout(function wrongAnim() {
+            setTimeout(function wrongAnimDelay() {
               $("li.card").removeClass("incorrect");
             }, 425);
             lockCounter = 0;
