@@ -447,7 +447,7 @@ span.close {
   }
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape) and (max-width: 36em) {
   .modal-content {
     height: auto;
   }
