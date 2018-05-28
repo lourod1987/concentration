@@ -10,3 +10,9 @@
 - Work on the winning condition. How does your game “know” if a player has won?
 
 - We recommend saving styling until the very end. Allow your game logic and functionality to dictate the styling.
+
+## TODO:
+
+Add Leaderboards (need backend: Firebase or Heroku/Node.js?)
+
+Add additional Arcade play mode. Will have hidden bonus items. Ability to gain stars or knock current time down.
