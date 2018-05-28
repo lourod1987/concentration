@@ -1,8 +1,30 @@
 # Concentration
 
-A memory matching game. This repo will contain all my project files from beginning to start for the creation of this project. The project will demonstrate my aptitude with html, css, and javascript.
+A memory matching game themed in mythology. This repo will contain all related project files from beginning to start for the creation of this project. The project will demonstrate my aptitude with html, css, and javascript.
+
+## Game Rules
+
+Match pairs of cards to win. When all 8 pairs are match, you win!
+
+You start the game with 5 stars and will begin losing them once your move count exceeds a certain number.
+
+A single move is counted only after 2 cards are selected.
+
+You may only select 2 cards at a time.
+
+You cannot select and unselect cards (no peeking). 
+
+Timer begins with first selection.
+
+You can reset or mute the game at any time.
+
+If you win the game with 5 stars you get a unique win screen!
 
 
+### Performance Notes
+
+This game runs best on desktop, laptop, or tablet.
+If the game is run on mobile the game performs best in landscape (though your view is limited).
 
 ## Original svg img credits
 
