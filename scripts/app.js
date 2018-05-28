@@ -128,7 +128,7 @@ $(document).ready( () => {
           let $rating = $(".rating li");
           let copyR = $rating.slice(0);
           
-          clearInterval(timerFunc);
+          clearInterval(timeInt);
           $("p.cleanup").remove();
           
           $(".modal-content h2").after(`<p class="cleanup">You made ${moves} moves and scored a rating of: </p>`);
