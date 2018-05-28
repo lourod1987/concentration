@@ -54,8 +54,6 @@ body {
 .rating {
   display: inline-flex;
   list-style-type: none;
-  padding: 5px;
-  font-size: 24px;
   align-self: center;
   min-width: 310px;
 }
@@ -384,7 +382,71 @@ original pixel values:
 
 @media only screen and (min-width: 20em) and (max-width: 36em) {
 /*	mobile styles go here */
+  .header h1 {
+  font-size: 2rem;
+  text-align: center;
+}
+  .info {
+    font-size: 1rem;
+  }
   
+  .rating {
+    min-width: 180px;
+    padding: 0;
+  }
+  
+  .rating li {
+/*    padding-left: 2px;*/
+  }
+  
+  .rating li img {
+    width: 23px;
+  }
+  
+  .moves {
+    margin-left: 15px;
+    text-align: center;
+  }
+  
+  .timer {
+    text-align: center;
+    width: 80px;
+  }
+  
+  .deck {
+    padding: 0.45rem;
+  }
+  
+  .card {
+    min-height: 100px;
+    max-height: 100px;
+    min-width: 90px;
+    max-width: 90px;
+    padding: 15px;
+    font-size: 0.65rem;
+  }
+  
+  .card i img {
+    width: 60px;
+  }
+  
+  .reset {
+  width: 35px;
+  padding: 2px;
+  margin-right: 15px;
+}
+
+  .sound {
+    margin-right: 15px;
+  }
+  
+  #mute {
+    width: 25px;
+  }
+
+  #play {
+    width: 25px;
+  }
 }
 
 @media only screen and (min-width: 36em) and (max-width: 52em) {
