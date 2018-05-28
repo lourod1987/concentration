@@ -364,7 +364,7 @@ span.close {
   
   section.info {
     font-size: 0.5rem;
-    min-width: 300px;
+    min-width: 265px;
     height: 50px;
     border-radius: 15px;
   }
@@ -378,7 +378,7 @@ span.close {
   }
   
   ul.deck {
-    width: 300px;
+    width: 275px;
     grid-gap: 5px;
   }
   
@@ -391,13 +391,18 @@ span.close {
 
 @media only screen and (min-width: 20em) and (max-width: 36em) {
 /*	mobile styles go here */
+  #backtohome {
+    padding: 0.7rem;
+    border-radius: 10px;
+    font-size: 10px;
+  }
   .header h1 {
     font-size: 1.4rem;
   }
   
   .info {
     font-size: 0.9rem;
-    min-width: 400px;
+    min-width: 355px;
     height: 60px;
     border-radius: 20px;
     border: 0;
@@ -412,7 +417,7 @@ span.close {
   }
   
   .deck {
-    width: 400px;
+    width: 375px;
     grid-gap: 8px;
     border: 0;
   }
