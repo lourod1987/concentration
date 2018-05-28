@@ -257,7 +257,7 @@ footer {
 }
 
 
-/* The Modal (background)
+/* The Modal (background) original code from w3schools.com
 ===============================*/
 .modal {
   display: flex; 
@@ -274,7 +274,7 @@ footer {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Modal Content/Box */
+/* Modal Content Box */
 .modal-content {
   display: flex;
   background-color: #00605A;/*#00A99D;*/
