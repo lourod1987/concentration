@@ -12,7 +12,12 @@
 - We recommend saving styling until the very end. Allow your game logic and functionality to dictate the styling.
 
 ## TODO:
+* Add Leaderboards (need backend: Firebase or Heroku/Node.js?)
 
-Add Leaderboards (need backend: Firebase or Heroku/Node.js?)
+* Add additional Arcade play mode. Will have hidden bonus items. Ability to gain stars or knock current time down.
 
-Add additional Arcade play mode. Will have hidden bonus items. Ability to gain stars or knock current time down.
+* Store game state using local storage
+
+* Cache img resources
+
+* Keyboard shortcuts for gameplay
