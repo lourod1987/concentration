@@ -446,3 +446,9 @@ span.close {
     font-size: 1rem;
   }
 }
+
+@media screen and (orientation: landscape) {
+  .modal-content {
+    height: auto;
+  }
+}
