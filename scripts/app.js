@@ -190,7 +190,7 @@ $(document).ready( () => {
   const $front = $(".deck li span");
   $front.addClass("default");
   
-  //on card click
+  //on card click event
   $($cards).click( (evt) => {
     if (!timeRunning) {
       timeRunning = true;
@@ -257,6 +257,7 @@ $(document).ready( () => {
     
   });
   
+  //mute button event
   $("div.sound").click( () => {
     $("#mute").toggle();
     $("#play").toggle();
@@ -278,15 +279,18 @@ $(document).ready( () => {
     }
   });
   
+  //play again button event (from modal win screen)
   $(".play-again").click( () => {
     reset();
     $(".modal").toggle();
   });
   
+  //close button event
   $(".close").click( () => {
     $(".modal").toggle();
   });
   
+  //reset button event
   $(".reset").click( () => {
     reset();
   });
