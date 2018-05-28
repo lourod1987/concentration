@@ -209,7 +209,6 @@ $(document).ready( () => {
     //selection check
     if (lockCounter === 2) {
       setTimeout(function check() {
-        console.log("running check");
         if ($selection.length === 2) {
           let select1 = $selection[0].textContent;
           let select2 = $selection[1].textContent;
