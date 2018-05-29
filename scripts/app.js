@@ -16,33 +16,33 @@ $(document).ready( () => {
   const volOnAudio = document.getElementById("volume_on-sound");
   
   const shuffleDeck = [
-    '<span><img src="../imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
-    '<span><img src="../imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
-    '<span><img src="../imgs/dragon.svg" alt="Green dragon">Dragon</span>',
-    '<span><img src="../imgs/dragon.svg" alt="Green dragon">Dragon</span>',
-    '<span><img src="../imgs/pegasus.svg" alt="Rearing pegasus">Pegasus</span>',
-    '<span><img src="../imgs/pegasus.svg" alt="Rearing pegasus">Pegasus</span>',
-    '<span><img src="../imgs/golem.svg" alt="Golem rock creature">Golem</span>',
-    '<span><img src="../imgs/golem.svg" alt="Golem rock creature">Golem</span>',
-    '<span><img src="../imgs/siren.svg" alt="Siren singing">Siren</span>',
-    '<span><img src="../imgs/siren.svg" alt="Siren singing">Siren</span>',
-    '<span><img src="../imgs/hydra.svg" alt="Hydra ready to attack">Hydra</span>',
-    '<span><img src="../imgs/hydra.svg" alt="Hydra ready to attack">Hydra</span>',
-    '<span><img src="../imgs/elf.svg" alt="Elf head, long pointy ears">Elf</span>',
-    '<span><img src="../imgs/elf.svg" alt="Elf head, long pointy ears">Elf</span>',
-    '<span><img src="../imgs/dwarf.svg" alt="Dwarf with helmet and thick beard">Dwarf</span>',
-    '<span><img src="../imgs/dwarf.svg" alt="Dwarf with helmet and thick beard">Dwarf</span>'
+    '<span><img src="./imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
+    '<span><img src="./imgs/phoenix.svg" alt="Fiery phoenix creature">Phoenix</span>',
+    '<span><img src="./imgs/dragon.svg" alt="Green dragon">Dragon</span>',
+    '<span><img src="./imgs/dragon.svg" alt="Green dragon">Dragon</span>',
+    '<span><img src="./imgs/pegasus.svg" alt="Rearing pegasus">Pegasus</span>',
+    '<span><img src="./imgs/pegasus.svg" alt="Rearing pegasus">Pegasus</span>',
+    '<span><img src="./imgs/golem.svg" alt="Golem rock creature">Golem</span>',
+    '<span><img src="./imgs/golem.svg" alt="Golem rock creature">Golem</span>',
+    '<span><img src="./imgs/siren.svg" alt="Siren singing">Siren</span>',
+    '<span><img src="./imgs/siren.svg" alt="Siren singing">Siren</span>',
+    '<span><img src="./imgs/hydra.svg" alt="Hydra ready to attack">Hydra</span>',
+    '<span><img src="./imgs/hydra.svg" alt="Hydra ready to attack">Hydra</span>',
+    '<span><img src="./imgs/elf.svg" alt="Elf head, long pointy ears">Elf</span>',
+    '<span><img src="./imgs/elf.svg" alt="Elf head, long pointy ears">Elf</span>',
+    '<span><img src="./imgs/dwarf.svg" alt="Dwarf with helmet and thick beard">Dwarf</span>',
+    '<span><img src="./imgs/dwarf.svg" alt="Dwarf with helmet and thick beard">Dwarf</span>'
   ];
   
   const score = [
-    '<li><img src="../imgs/primary-star.svg"></li>',
-    '<li id="second"><img src="../imgs/primary-star.svg" alt="golden star"></li>',
-    '<li id="third"><img src="../imgs/primary-star.svg" alt="golden star"></li>',
-    '<li id="fourth"><img src="../imgs/primary-star.svg" alt="golden star"></li>',
-    '<li id="fifth"><img src="../imgs/primary-star.svg" alt="golden star"></li>'
+    '<li><img src="./imgs/primary-star.svg"></li>',
+    '<li id="second"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="third"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="fourth"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="fifth"><img src="./imgs/primary-star.svg" alt="golden star"></li>'
   ];
   
-  const emptyStar = ['<li><img src="../imgs/empty-star.svg" alt="empty star"></li>'];
+  const emptyStar = ['<li><img src="./imgs/empty-star.svg" alt="empty star"></li>'];
   
   //shuffle the deck of cards randomly
   function shuffle() {
