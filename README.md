@@ -26,6 +26,16 @@ If you win the game with 5 stars you get a unique win screen!
 This game runs best on desktop, laptop, or tablet.
 If the game is run on mobile the game performs best in landscape (though your view is limited).
 
+## Languages
+ * HTML
+ * CSS
+ * JavaScript
+
+
+## Dependencies
+* jQuery
+* Google Fonts
+
 ## Original svg img credits
 
 * phoenix by parkjisun from the Noun Project
