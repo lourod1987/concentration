@@ -21,3 +21,5 @@
 * Cache img resources
 
 * Keyboard shortcuts for gameplay
+
+* Add a peek functionality. Single use look at all cards after shuffle for only a few seconds (1 - 3 seconds play testing required)
