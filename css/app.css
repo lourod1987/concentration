@@ -21,7 +21,7 @@ body {
 }
 */
 
-body:before {
+body::before {
   content: ' ';
   position: fixed;
   width: 100%;
