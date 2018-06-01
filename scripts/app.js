@@ -1,3 +1,9 @@
+exports.$point = $(".point");
+exports.$cTime = currentTime;
+// var myModule = require('./my-module.js')
+
+// console.log(myModule.myText);
+
 $(document).ready( () => {
   const $cards = $(".deck li");
   const $back = $(".deck li i");
@@ -35,11 +41,11 @@ $(document).ready( () => {
   ];
   
   const score = [
-    '<li><img src="./imgs/primary-star.svg"></li>',
-    '<li id="second"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
-    '<li id="third"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
-    '<li id="fourth"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
-    '<li id="fifth"><img src="./imgs/primary-star.svg" alt="golden star"></li>'
+    '<li class="point"><img src="./imgs/primary-star.svg"></li>',
+    '<li id="second" class="point"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="third" class="point"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="fourth" class="point"><img src="./imgs/primary-star.svg" alt="golden star"></li>',
+    '<li id="fifth" class="point"><img src="./imgs/primary-star.svg" alt="golden star"></li>'
   ];
   
   const emptyStar = ['<li><img src="./imgs/empty-star.svg" alt="empty star"></li>'];
