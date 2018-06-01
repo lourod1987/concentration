@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 mongoose.Promise = Promise;
 
-var dbUrl ='mongodb://admin:station24@ds239930.mlab.com:39930/messaging-app';
+var dbUrl ='mongodb://mythic-admin:Wootstation24@ds139446.mlab.com:39446/mythic-leaderboards';
 
 var Message = mongoose.model('Message', {
     name: String,
